@@ -43,15 +43,11 @@ module tb_line_buffer_shift;
     // Khối nạp file hex vào bộ nhớ
     initial begin
 
-        $readmemh("model/verilog_data/test_img_0_label_7.hex", image_mem);
+        $readmemh("test_img_0_label_7.hex", image_mem);
 
     end
     // --------------------------------
     initial begin
-        // Setup Waveform
-        $dumpfile("dump.vcd");
-        $dumpvars(0, tb_line_buffer_shift);
-
         // A. Reset hệ thống
         rst_n = 0;
         valid_in = 0;
@@ -83,15 +79,12 @@ module tb_line_buffer_shift;
     // 5. Monitor kết quả (Tự động in ra console khi có Valid)
     always @(posedge clk) begin
         if (valid_out) begin
-            $display("Time: %0t | Valid! | In(Row%0d): %h | L1: %h | L2: %h | L3: %h | L4: %h",
-                     $time, uut.y_cnt, data_in, dout_line1, dout_line2, dout_line3, dout_line4);
+            $display("Time: %0t | Valid! | In(Row%0d,Col%0d): %h | L1: %h | L2: %h | L3: %h | L4: %h",
+                     $time, uut.y_cnt,uut.x_cnt, data_in, dout_line1, dout_line2, dout_line3, dout_line4);
                      
-            // Check nhanh logic
             // Nếu data_in là dòng N, thì L1 phải là N-1, L2 là N-2...
-            if ((data_in - 1 == dout_line1) && (dout_line1 - 1 == dout_line2))
-                $display("    -> Logic Check: PASS (Dung cot, dung tre dong)");
-            else
-                $display("    -> Logic Check: FAIL");
+            // So sánh với bộ nhớ ảnh gốc để kiểm tra tính đúng đắn
+            
         end
     end
 

@@ -1,15 +1,15 @@
 import torch
 import os
 
-# Hàm chuyển đổi Hex 16-bit bù 2 sang số thực (Float)
+# Hàm chuyển đổi Hex 8-bit bù 2 sang số thực (Float)
 def hex_to_float(hex_str):
-    # Chuyển từ hex sang int 16-bit
+    # Chuyển từ hex sang int 8-bit
     val_int = int(hex_str, 16)
     
-    # Xử lý bù 2 (nếu bit dấu (bit 15) là 1 thì là số âm)
-    if val_int & 0x8000:
-        val_int = val_int - 0x10000
-        
+    # Xử lý bù 2 (nếu bit dấu (bit 7) là 1 thì là số âm)
+    if val_int & 0x80:
+        val_int = val_int - 0x100
+
     # Chia cho 256 để ra số thực (Fixed-point Q8.8)
     return val_int / 256.0
 
