@@ -98,7 +98,6 @@ if __name__ == "__main__":
             
             if total_errors == 0:
                 print("\n✅ PASSED! Kết quả phần cứng trùng khớp 100% với Python.")
-                print("   Logic Line Buffer & Pipeline hoạt động hoàn hảo.")
             else:
                 print(f"\n❌ FAILED! Có {total_errors} vị trí sai lệch.")
                 print("Dòng đầu tiên bị sai:")

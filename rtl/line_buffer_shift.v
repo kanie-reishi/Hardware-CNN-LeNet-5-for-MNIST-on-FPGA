@@ -67,6 +67,7 @@ module line_buffer_shift #(
     assign dout_line4 = line_buffer3[LB_DEPTH-1];
 
     // Valid logic (Bỏ qua 4 dòng đầu và 4 cột đầu - Padding Mask)
+    // Đảm bảo chỉ báo valid_out khi có đủ dữ liệu để tạo cửa sổ 5x5
     assign valid_out = (x_cnt >= 4 && y_cnt >= 4) && valid_in;
 
 endmodule
