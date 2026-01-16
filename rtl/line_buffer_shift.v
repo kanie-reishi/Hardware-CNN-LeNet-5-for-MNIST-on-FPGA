@@ -1,25 +1,26 @@
 module line_buffer_shift #(
-    parameter IMG_WIDTH = 32
+    parameter IMG_WIDTH = 32,
+    parameter DATA_WIDTH = 8
 )(
     input wire clk,
     input wire rst_n,       
-    input [7:0] data_in, 
+    input [DATA_WIDTH-1:0] data_in, 
     input wire valid_in, 
     
-    output wire [7:0] dout_line1,
-    output wire [7:0] dout_line2, 
-    output wire [7:0] dout_line3, 
-    output wire [7:0] dout_line4,
+    output wire [DATA_WIDTH-1:0] dout_line1,
+    output wire [DATA_WIDTH-1:0] dout_line2, 
+    output wire [DATA_WIDTH-1:0] dout_line3, 
+    output wire [DATA_WIDTH-1:0] dout_line4,
 
     output wire valid_out 
 );
-    localparam LB_DEPTH = 32; 
+    localparam LB_DEPTH = IMG_WIDTH; 
 
     // Bộ nhớ Line Buffer
-    reg [7:0] line_buffer0 [0:LB_DEPTH-1];
-    reg [7:0] line_buffer1 [0:LB_DEPTH-1];
-    reg [7:0] line_buffer2 [0:LB_DEPTH-1];
-    reg [7:0] line_buffer3 [0:LB_DEPTH-1];
+    reg [DATA_WIDTH-1:0] line_buffer0 [0:LB_DEPTH-1];
+    reg [DATA_WIDTH-1:0] line_buffer1 [0:LB_DEPTH-1];
+    reg [DATA_WIDTH-1:0] line_buffer2 [0:LB_DEPTH-1];
+    reg [DATA_WIDTH-1:0] line_buffer3 [0:LB_DEPTH-1];
 
     integer i;
     reg [4:0] x_cnt;

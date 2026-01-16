@@ -71,7 +71,7 @@ module conv_layer_c1 (
         for(i = 0; i < 6; i = i + 1) begin : CONV_ENGINES
             // Offset for each kernel
             localparam KERNEL_OFFSET = i * 25;
-            conv_pe_5x5 #(
+            conv_pe_5x5_c1 #(
                 .DATA_WIDTH(8),
                 .WEIGHT_WIDTH(8),
                 .OUT_WIDTH(24)

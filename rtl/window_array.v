@@ -1,20 +1,22 @@
-module window_array (
+module window_array #(
+    parameter DATA_WIDTH = 8
+)(
     input clk,
     input shift_en,
     input rst_n,
     // 5 dòng dữ liệu đầu vào song song
-    input [7:0] row_in_0, // Dòng hiện tại (t)
-    input [7:0] row_in_1, // Dòng t-1
-    input [7:0] row_in_2, // Dòng t-2
-    input [7:0] row_in_3, // Dòng t-3
-    input [7:0] row_in_4, // Dòng t-4
+    input [DATA_WIDTH-1:0] row_in_0, // Dòng hiện tại (t)
+    input [DATA_WIDTH-1:0] row_in_1, // Dòng t-1
+    input [DATA_WIDTH-1:0] row_in_2, // Dòng t-2
+    input [DATA_WIDTH-1:0] row_in_3, // Dòng t-3
+    input [DATA_WIDTH-1:0] row_in_4, // Dòng t-4
     
     // Output 25 pixel (Flattened)
-    output reg [7:0] w00, w01, w02, w03, w04, // Hàng t-4
-    output reg [7:0] w10, w11, w12, w13, w14, // Hàng t-3
-    output reg [7:0] w20, w21, w22, w23, w24, // Hàng t-2
-    output reg [7:0] w30, w31, w32, w33, w34, // Hàng t-1
-    output reg [7:0] w40, w41, w42, w43, w44  // Hàng t (Hiện tại)
+    output reg [DATA_WIDTH-1:0] w00, w01, w02, w03, w04, // Hàng t-4
+    output reg [DATA_WIDTH-1:0] w10, w11, w12, w13, w14, // Hàng t-3
+    output reg [DATA_WIDTH-1:0] w20, w21, w22, w23, w24, // Hàng t-2
+    output reg [DATA_WIDTH-1:0] w30, w31, w32, w33, w34, // Hàng t-1
+    output reg [DATA_WIDTH-1:0] w40, w41, w42, w43, w44  // Hàng t (Hiện tại)
 );
 
     always @(posedge clk or negedge rst_n) begin

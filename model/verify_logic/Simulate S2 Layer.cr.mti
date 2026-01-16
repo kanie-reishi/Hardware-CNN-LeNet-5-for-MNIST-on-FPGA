@@ -1,8 +1,22 @@
-{H:/Projects/CNN (LeNet-5 for MNIST) on FPGA/tb/tb_pooling_layer_s2.v} {1 {vlog -work work {H:/Projects/CNN (LeNet-5 for MNIST) on FPGA/tb/tb_pooling_layer_s2.v}
+{H:/Projects/CNN (LeNet-5 for MNIST) on FPGA/rtl/pooling_layer_s2.v} {1 {vlog -work work {H:/Projects/CNN (LeNet-5 for MNIST) on FPGA/rtl/pooling_layer_s2.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module pooling_layer_s2
+
+Top level modules:
+	pooling_layer_s2
+
+} {} {}} {H:/Projects/CNN (LeNet-5 for MNIST) on FPGA/tb/tb_pooling_layer_s2.v} {1 {vlog -work work {H:/Projects/CNN (LeNet-5 for MNIST) on FPGA/tb/tb_pooling_layer_s2.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module tb_pooling_layer_s2
 
 Top level modules:
 	tb_pooling_layer_s2
+
+} {} {}} {H:/Projects/CNN (LeNet-5 for MNIST) on FPGA/rtl/pooling_unit_2x2.v} {1 {vlog -work work {H:/Projects/CNN (LeNet-5 for MNIST) on FPGA/rtl/pooling_unit_2x2.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module pooling_unit_2x2
+
+Top level modules:
+	pooling_unit_2x2
 
 } {} {}}

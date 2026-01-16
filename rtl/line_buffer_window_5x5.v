@@ -1,27 +1,29 @@
 module line_buffer_window_5x5 #(
-    parameter IMG_WIDTH = 32
+    parameter IMG_WIDTH = 32,
+    parameter DATA_WIDTH = 8
 )(
     input clk,
     input rst_n,
-    input [7:0] data_in,
+    input [DATA_WIDTH-1:0] data_in,
     input valid_in,
     // 25 pixel output (Flattened)
-    output wire [7:0] p00, p01, p02, p03, p04,
-    output wire [7:0] p10, p11, p12, p13, p14,
-    output wire [7:0] p20, p21, p22, p23, p24,
-    output wire [7:0] p30, p31, p32, p33, p34,
-    output wire [7:0] p40, p41, p42, p43, p44,
+    output wire [DATA_WIDTH-1:0] p00, p01, p02, p03, p04,
+    output wire [DATA_WIDTH-1:0] p10, p11, p12, p13, p14,
+    output wire [DATA_WIDTH-1:0] p20, p21, p22, p23, p24,
+    output wire [DATA_WIDTH-1:0] p30, p31, p32, p33, p34,
+    output wire [DATA_WIDTH-1:0] p40, p41, p42, p43, p44,
     output reg valid_out // Output valid signal
 );
     // Intermediate wires for line buffer outputs
-    wire [7:0] line1_out;
-    wire [7:0] line2_out;
-    wire [7:0] line3_out;
-    wire [7:0] line4_out;
+    wire [DATA_WIDTH-1:0] line1_out;
+    wire [DATA_WIDTH-1:0] line2_out;
+    wire [DATA_WIDTH-1:0] line3_out;
+    wire [DATA_WIDTH-1:0] line4_out;
     wire lb_valid_out; // Valid signal from line buffer
     // Call line buffer shift module
     line_buffer_shift #(
-        .IMG_WIDTH(IMG_WIDTH)
+        .IMG_WIDTH(IMG_WIDTH),
+        .DATA_WIDTH(DATA_WIDTH)
     ) lb_shift (
         .clk(clk),
         .rst_n(rst_n),
@@ -34,7 +36,9 @@ module line_buffer_window_5x5 #(
         .valid_out(lb_valid_out) 
     );
     // Call window array module
-    window_array win_array (
+    window_array #(
+        .DATA_WIDTH(DATA_WIDTH)
+    ) win_array (
         .clk(clk),
         .shift_en(valid_in),
         .rst_n(rst_n),
