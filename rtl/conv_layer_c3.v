@@ -198,7 +198,7 @@ module conv_layer_c3 #(
             end
 
             // C. Instantiate PE với các dây đã flatten
-            conv_pe_multi_channel_6_to_1 #(
+            conv_pe_c3 #(
                 .IN_WIDTH(IN_WIDTH),
                 .W_WIDTH(W_WIDTH),
                 .OUT_WIDTH(OUT_WIDTH)

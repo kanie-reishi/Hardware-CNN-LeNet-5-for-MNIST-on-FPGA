@@ -1,4 +1,4 @@
-module conv_pe_5x5_c1 #(
+module conv_pe_c1 #(
     parameter DATA_WIDTH = 8,
     parameter WEIGHT_WIDTH = 8,
     parameter OUT_WIDTH = 24 // 8bit * 8bit * 25 elements

@@ -3,7 +3,7 @@
 // Each PE processes 6 input channels and produces 1 output channel
 // 16 PE units in parallel for 16 output channels
 // Each input channel has a 5x5 kernel (25 weights) + bias
-module conv_pe_multi_channel_6_to_1 #(
+module conv_pe_c3 #(
     parameter IN_WIDTH = 24, // Input feature map pixel width
     parameter W_WIDTH = 8,   // Weight width
     parameter OUT_WIDTH = 32  // Output feature map pixel width
