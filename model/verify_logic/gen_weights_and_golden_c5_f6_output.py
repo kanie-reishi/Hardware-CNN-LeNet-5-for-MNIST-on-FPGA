@@ -129,6 +129,7 @@ def main():
     # 3. Tính F6
     # F6 Input là Output của C5
     f6_out = torch.matmul(c5_out_clamped, model.f6.weight.data.t()) + model.f6.bias.data
+    f6_out = np.maximum(0, f6_out) # <--- (ReLU)
     f6_out_clamped = torch.clamp(f6_out, -2147483648, 2147483647)
     np.savetxt(GOLDEN_F6, f6_out_clamped.numpy().astype(int), fmt='%d')
     print(f"   -> F6 Range: [{f6_out_clamped.min()}, {f6_out_clamped.max()}]")
