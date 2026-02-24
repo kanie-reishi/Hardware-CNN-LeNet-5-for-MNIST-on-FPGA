@@ -1,4 +1,5 @@
-
+// Convolutional Layer C1
+// Input: Pixel stream, 1 channel
 module conv_layer_c1 (
     input clk,
     input rst_n,

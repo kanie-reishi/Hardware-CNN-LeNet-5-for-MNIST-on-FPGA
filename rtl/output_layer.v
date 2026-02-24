@@ -24,7 +24,7 @@ module output_layer #(
     integer b;
     initial begin
         // File hex chứa 10 dòng, mỗi dòng 84 bytes
-        $readmemh("out_weight.hex", weights);
+        $readmemh("output_weight.hex", weights);
         
         // Init bias (hoặc load file)
         for (b = 0; b < NUM_OUT; b = b + 1) biases[b] = 0;
