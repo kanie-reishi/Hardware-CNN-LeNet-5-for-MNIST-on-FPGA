@@ -1,0 +1,21 @@
+# c3_bias
+# 16 values | INT32 | scale=s_c3_acc=1.8243e-04
+# shape=(16,)  min=-772  max=689  mean=-100.6875
+# One row per output filter/neuron, space-separated integers
+#
+[  0] -295
+[  1] -384
+[  2] -130
+[  3] -150
+[  4] -756
+[  5] 689
+[  6] 74
+[  7] 671
+[  8] -112
+[  9] -575
+[ 10] -353
+[ 11] -772
+[ 12] 352
+[ 13] -216
+[ 14] 428
+[ 15] -82

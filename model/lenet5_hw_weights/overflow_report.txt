@@ -1,0 +1,50 @@
+Hardware Bit-Shift Simulation Report
+==============================================================
+Test Accuracy  : 0.9948 (99.48%)
+Target         : 98.50%
+Pass/Fail      : PASS
+HW Safety      : ALL OK
+
+RIGHT-SHIFT PARAMETERS (program these into Verilog localparam):
+  localparam RS_C1 = 12;
+  localparam RS_C3 = 9;
+  localparam RS_C5 = 9;
+  localparam RS_F6 = 7;
+  // Output layer: NO shift (raw INT32 logits, use argmax)
+
+ACCUMULATOR PEAKS (observed over full test set):
+  Layer                     Peak           Limit    Util%  Status
+------------------------------------------------------------
+  c1_acc_peak            195,347       8,388,607    2.33%  [OK]
+  c1_out_peak                 42  (INT8 max=127)    33.1% of range
+  c3_acc_peak             35,778   2,147,483,647    0.00%  [OK]
+  c3_out_peak                 37  (INT8 max=127)    29.1% of range
+  c5_acc_peak             23,860   2,147,483,647    0.00%  [OK]
+  c5_out_peak                 35  (INT8 max=127)    27.6% of range
+  f6_acc_peak             10,798   2,147,483,647    0.00%  [OK]
+  f6_out_peak                 82  (INT8 max=127)    64.6% of range
+  out_acc_peak            18,691   2,147,483,647    0.00%  [OK]
+
+SCALE CHAIN:
+  s_pixel   = 1/255 = 3.921569e-03
+  s_c1_acc  = s_pixel  x s_c1_w  = 1.447361e-05
+  s_c1_out  = s_c1_acc x 2^12   = 5.928393e-02
+  s_c3_acc  = s_c1_out x s_c3_w  = 1.824290e-04
+  s_c3_out  = s_c3_acc x 2^9   = 9.340366e-02
+  s_c5_acc  = s_c3_out x s_c5_w  = 2.697012e-04
+  s_c5_out  = s_c5_acc x 2^9   = 1.380870e-01
+  s_f6_acc  = s_c5_out x s_f6_w  = 6.025138e-04
+  s_f6_out  = s_f6_acc x 2^7   = 7.712177e-02
+  s_out_acc = s_f6_out x s_out_w = 7.541631e-04
+
+BIAS CONVERSION (bias added BEFORE right-shift in hardware):
+  bias_int32_C1  = round(bias_float_C1  / s_c1_acc)
+  bias_int32_C3  = round(bias_float_C3  / s_c3_acc)
+  bias_int32_C5  = round(bias_float_C5  / s_c5_acc)
+  bias_int32_F6  = round(bias_float_F6  / s_f6_acc)
+  bias_int32_OUT = round(bias_float_OUT / s_out_acc)
+
+TROUBLESHOOTING:
+  [HW acc < 98.5%]  -> More float_epochs (30), more qat_epochs (30)
+  [QAT vs HW gap > 1%] -> This should not happen with bit-shift QAT
+  [Acc overflow]    -> Should not happen; verify weight max <= 127

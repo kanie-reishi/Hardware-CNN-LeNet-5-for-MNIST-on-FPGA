@@ -1,0 +1,15 @@
+# out_bias
+# 10 values | INT32 | scale=s_out_acc=7.5416e-04
+# shape=(10,)  min=-87  max=60  mean=-2.1000
+# One row per output filter/neuron, space-separated integers
+#
+[  0] -65
+[  1] -1
+[  2] 33
+[  3] -14
+[  4] -3
+[  5] 15
+[  6] -87
+[  7] 0
+[  8] 60
+[  9] 41

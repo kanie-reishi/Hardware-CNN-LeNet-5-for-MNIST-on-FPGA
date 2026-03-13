@@ -1,0 +1,11 @@
+# c1_bias
+# 6 values  | INT32 | scale=s_c1_acc=1.4474e-05
+# shape=(6,)  min=-4633  max=4189  mean=-688.3333
+# One row per output filter/neuron, space-separated integers
+#
+[  0] -4633
+[  1] 174
+[  2] 468
+[  3] 4189
+[  4] -602
+[  5] -3726
